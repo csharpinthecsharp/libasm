@@ -3,11 +3,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <fcntl.h>
 
 extern size_t ft_strlen(const char *s);
 extern char* ft_strcpy(char *dest, const char *src);
 extern int ft_strcmp(const char *s1, const char *s2);
 extern ssize_t ft_write(int fd, const char *s, size_t count);
+extern ssize_t ft_read(int fd, const char *s, size_t count);
 
 int main(int ac, char** av) {
 	if (ac != 2)
@@ -53,5 +55,30 @@ int main(int ac, char** av) {
 	write(1, "\n", 1);	
 	write(999, "Im demon", strlen("Im demon"));
 	printf("Wrong FD: %d\n", errno);
+
+	printf("-- ft_read --\n");
+	ssize_t r = 1;
+	char buff;
+	int fd = open("ft_read.s", O_RDONLY);
+	while (r > 0) {
+		r = ft_read(fd, &buff, 1);
+		write(1, &buff, 1);
+	}
+	fd = 999;
+	ft_read(fd, &buff, 1);
+	printf("Wrong FD (ft): %d\n", errno);
+
+	printf("-- read --\n");
+	r = 1;
+	close(fd);
+	fd = open("ft_read.s", O_RDONLY);
+	while (r > 0) {
+		r = read(fd, &buff, 1);
+		write(1, &buff, 1);
+	}
+	fd = 999;
+	read(fd, &buff, 1);
+	printf("Wrong FD: %d\n", errno);
+
 	return (0);
 }	
