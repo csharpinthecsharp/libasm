@@ -1,18 +1,21 @@
 global ft_strcpy
 
 ft_strcpy:              ; rdi = arg1 (dest) | rsi = arg2 (src)
-   mov rax, rdi         ; tell rax (our return for later) to point on rdi
+   mov rcx, 0
+   mov rdx, 0
+   cmp rsi, 0
+   je .loop_end
 
 .loop_start:
-    mov al, [rsi]       ; move a byte of rsi (src) into a temp low 8 bit
-    mov [rdi], al       ; move temp low 8 bit into rdi (dest)
+    mov al, BYTE [rsi + rcx]
+    mov BYTE [rdi + rcx], al
 
     cmp al,  0          ; compare temp low 8 bit to '\0'
     je .loop_end        ; escape the loop
 
-    inc rsi             
-    inc rdi
+    inc rcx
     jmp .loop_start     ; go on next loop
 
 .loop_end:
+    mov rax, rdi
     ret                 ; return rax that point to dest
