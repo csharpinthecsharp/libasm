@@ -11,6 +11,10 @@ int main(int ac, char** av) {
 		err();
 	if (!strcmp("strlen", av[1]))
 		f_strlen_test();
+	else if (!strcmp("strcmp", av[1]))
+		f_strcmp_test();
+	else if (!strcmp("strcpy", av[1]))
+		f_strcpy_test();
 	else
 		err();
 	return (0);
