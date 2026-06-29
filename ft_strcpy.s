@@ -1,7 +1,7 @@
 global ft_strcpy
 
 ft_strcpy:              ; rdi = arg1 (dest) | rsi = arg2 (src)
-    mov rax, rdi        ; tell rax (our return for later) to point on rdi
+   mov rax, rdi         ; tell rax (our return for later) to point on rdi
 
 .loop_start:
     mov al, [rsi]       ; move a byte of rsi (src) into a temp low 8 bit

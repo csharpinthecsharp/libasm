@@ -10,6 +10,7 @@ extern char* ft_strcpy(char *dest, const char *src);
 extern int ft_strcmp(const char *s1, const char *s2);
 extern ssize_t ft_write(int fd, const char *s, size_t count);
 extern ssize_t ft_read(int fd, const char *s, size_t count);
+extern char* ft_strdup(const char *s);
 
 int main(int ac, char** av) {
 	if (ac != 2)
@@ -50,11 +51,11 @@ int main(int ac, char** av) {
 	ft_write(1, "hello from ft_write", ft_strlen("hello from ft_write"));
 	ft_write(1, "\n", 1);
 	ft_write(999, "Im demon", ft_strlen("Im demon"));
-	printf("Wrong FD (ft): %d\n", errno);
+	printf("Wrong FD (ft): %s\n", strerror(errno));
 	write(1, "hello from unistd", strlen("hello from unistd"));
 	write(1, "\n", 1);	
 	write(999, "Im demon", strlen("Im demon"));
-	printf("Wrong FD: %d\n", errno);
+	printf("Wrong FD: %s\n", strerror(errno));
 
 	printf("-- ft_read --\n");
 	ssize_t r = 1;
@@ -66,7 +67,7 @@ int main(int ac, char** av) {
 	}
 	fd = 999;
 	ft_read(fd, &buff, 1);
-	printf("Wrong FD (ft): %d\n", errno);
+	printf("Wrong FD (ft): %s\n", strerror(errno));
 
 	printf("-- read --\n");
 	r = 1;
@@ -78,7 +79,25 @@ int main(int ac, char** av) {
 	}
 	fd = 999;
 	read(fd, &buff, 1);
-	printf("Wrong FD: %d\n", errno);
-
+	printf("Wrong FD: %s\n", strerror(errno));
+	
+	const char s[5] = "Hell";
+	char* s1 = ft_strdup(s);
+	if (!s1) {
+		printf("ft: Failed allocation\n");
+		return (1);
+	}	
+	printf("\nft_strdup: %s\n", s1);
+	if (errno == 12)
+		printf("ft_err: %s\n", strerror(errno));
+	
+	char* ss1 = strdup(s);
+	if (!ss1) {
+		printf("Failed allocation\n");
+		return (1);
+	}	
+	printf("strdup: %s\n", ss1);
+	if (errno == 12)
+		printf("err: %s\n", strerror(errno));
 	return (0);
 }	
