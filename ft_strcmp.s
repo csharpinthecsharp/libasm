@@ -1,5 +1,7 @@
 global ft_strcmp
+
 ; rdi 1 rsi 2
+
 ft_strcmp:
 	cmp rdi, 0
 	je _early_exit

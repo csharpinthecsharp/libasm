@@ -2,28 +2,38 @@
 #include "../libasm.h"
 
 int main(void) {
-	int i = 4;
+	int i = 6;
 	while (i >= 0) {
 		system("clear");
 		switch (i) {
-			case 4:
+			case 6:
 				printf("LIBASM STRLEN TEST:\n\n");
 				f_strlen_test();
 				printf("\nPress ENTER to go next\n");
 				break;
-			case 3:
+			case 5:
 				printf("LIBASM STRCMP TEST:\n\n");
 				f_strcmp_test();
 				printf("\nPress ENTER to go next\n");
 				break;
-			case 2:
+			case 4:
 				printf("LIBASM STRCPY TEST:\n\n");
 				f_strcpy_test();
 				printf("\nPress ENTER to go next\n");
 				break;
-			case 1:
+			case 3:
+				printf("LIBASM STRDUP TEST:\n\n");
+				f_strdup_test();
+				printf("\nPress ENTER to go next\n");
+				break;
+			case 2:
 				printf("LIBASM WRITE TEST:\n\n");
 				f_write_test();
+				printf("\nPress ENTER to go next\n");
+				break;
+			case 1:
+				printf("LIBASM READ TEST:\n\n");
+				f_read_test();
 				printf("\nPress ENTER to go next\n");
 				break;
 			default:

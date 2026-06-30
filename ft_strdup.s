@@ -3,7 +3,6 @@ extern ft_strlen
 extern ft_strcpy
 extern __errno_location
 
-section .text
 global ft_strdup
 
 ft_strdup:

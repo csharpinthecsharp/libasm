@@ -1,5 +1,6 @@
 global ft_write
 extern __errno_location
+
 ft_write:
 	; rdi, rsi, rdx (1, 2, 3) [args]
 	mov rax, 1		; write
